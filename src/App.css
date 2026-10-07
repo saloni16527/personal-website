@@ -1,0 +1,270 @@
+/* =========================
+   RESPONSIVE CENTER ALIGNMENT
+   ========================= */
+
+@media (max-width: 900px) {
+
+  /* Make every section single column */
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+    text-align: center !important;
+  }
+
+  /* Center all text */
+  .textContent {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .section-heading {
+    text-align: center !important;
+  }
+
+  .lead-paragraph,
+  .body-paragraph {
+    text-align: center !important;
+  }
+
+  /* Center images */
+  .imageContainer {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .section-image {
+    width: 100% !important;
+    max-width: 600px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* Center tags */
+  .tagContainer {
+    justify-content: center !important;
+  }
+
+  /* Center skills */
+  .skillsList {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Center roadmap */
+  .roadmapBox {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .roadmapItem {
+    text-align: left !important;
+  }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+  .grid-2 {
+    padding: 0 1rem !important;
+    gap: 2rem !important;
+  }
+
+  .textContent {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .section-heading {
+    font-size: 1.5rem !important;
+    text-align: center !important;
+  }
+
+  .lead-paragraph {
+    font-size: 1rem !important;
+    text-align: center !important;
+  }
+
+  .body-paragraph {
+    font-size: 0.9rem !important;
+    line-height: 1.7 !important;
+    text-align: center !important;
+  }
+
+  .imageContainer {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .section-image {
+    width: 90% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    border-radius: 18px !important;
+  }
+
+  .tagContainer {
+    justify-content: center !important;
+  }
+
+  .skillsList {
+    width: 100% !important;
+  }
+
+  .skillCard {
+    text-align: center !important;
+  }
+
+  .skillCardHeader {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+
+  .skillDesc {
+    text-align: center !important;
+  }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+   ========================= */
+
+@media (max-width: 400px) {
+
+  .grid-2 {
+    padding: 0 0.8rem !important;
+  }
+
+  .section-image {
+    width: 95% !important;
+  }
+
+  .section-heading {
+    font-size: 1.35rem !important;
+  }
+
+  .lead-paragraph {
+    font-size: 0.95rem !important;
+  }
+
+  .body-paragraph {
+    font-size: 0.85rem !important;
+  }
+}
+@media (max-width: 900px) {
+  .grid-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4rem !important;
+  }
+
+  .grid-reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4rem !important;
+  }
+
+  .imageContainer {
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .section-image {
+    display: block !important;
+    width: 90% !important;
+    max-width: 550px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4rem !important;
+  }
+
+  .grid-reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4rem !important;
+  }
+
+  .imageContainer {
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .section-image {
+    display: block !important;
+    width: 90% !important;
+    max-width: 550px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4rem !important;
+  }
+
+  .grid-reverse {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4rem !important;
+  }
+
+  .imageContainer {
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .section-image {
+    display: block !important;
+    width: 90% !important;
+    max-width: 550px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-2,
+  .grid-reverse {
+    gap: 3.5rem !important;
+  }
+
+  .imageContainer {
+    margin-bottom: 1rem !important;
+  }
+
+  .section-image {
+    width: 92% !important;
+    max-width: 420px !important;
+  }
+}
