@@ -1,4 +1,7 @@
 import './App.css';
+import image1 from './assets/image1.jpeg';
+import image2 from './assets/image2.jpeg';
+import image3 from './assets/image3.jpeg';
 import React, { useState } from 'react';
 
 export default function App() {
@@ -129,7 +132,7 @@ export default function App() {
         <div className="grid-2" style={styles.grid2}>
           <div style={styles.imageContainer}>
           <img 
-              src="who-i-am.jpeg" 
+              src={image1} 
               alt="Saloni - Who I Am" 
               style={{ ...styles.sectionImage, borderColor: colors.border }} 
             />
@@ -198,7 +201,7 @@ export default function App() {
 
           <div style={styles.imageContainer}>
             <img 
-              src="my-skill.jpeg" 
+              src={image2} 
               alt="Saloni - My Skills Progress" 
               style={{ ...styles.sectionImage, borderColor: colors.vibrantPrimary }} 
             />
@@ -210,7 +213,7 @@ export default function App() {
        <section id="goal" style={{ ...styles.section, background: '#F5F0FF' }}>
         <div className="grid-2" style={styles.grid2}>
           <div style={styles.imageContainer}>
-           <img src="future-goal.jpeg"
+           <img src={image3}
             alt="Saloni - My Future Goal" 
             style={{ ...styles.sectionImage, borderColor: colors.border }} 
            />
