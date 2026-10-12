@@ -1,516 +1,339 @@
-import './App.css';
-import image1 from './assets/image1.jpeg';
-import image2 from './assets/image2.jpeg';
-import image3 from './assets/image3.jpeg';
-import React, { useState } from 'react';
+import { useState } from "react";
+import "./App.css";
 
-export default function App() {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+const skills = [
+  {
+    name: "HTML5",
+    symbol: "5",
+    className: "html",
+    description: "Building the structure of web pages.",
+  },
+  {
+    name: "CSS3",
+    symbol: "3",
+    className: "css",
+    description: "Creating beautiful and responsive layouts.",
+  },
+  {
+    name: "JavaScript",
+    symbol: "JS",
+    className: "js",
+    description: "Adding logic and interactivity to websites.",
+  },
+  {
+    name: "React.js",
+    symbol: "⚛",
+    className: "react",
+    description: "Building reusable, component-based interfaces.",
+  },
+];
 
-  // Smooth scroll handler for navigation
-  const scrollToSection = (id) => {
-    setMobileNavOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+const qualities = [
+  "Curious learner",
+  "Hardworking",
+  "Consistent",
+  "Creative thinker",
+  "Always ready to learn",
+];
 
-  // Vibrant Palette (Warm Coral & Amber theme)
-  const colors = {
-    vibrantPrimary: '#ffb300', // Deep coral orange
-    vibrantHover: '#FFD6C9',
-    vibrantAccent: '#ffb300',
-    vibrantSecondary: '#ffb300', // Amber highlight
-    bgWarmLight: '#EEF7FF', // Light coral wash background
-    bgAmberLight: '#FFF1F4', // Light amber wash background
-    textMain: '#9B8AFB',
-    textMuted: '#9B8AFB',
-    border: '#ffe0b2',
-    vibrant: '#FFF0B8'
-  };
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <div style={{ ...styles.appContainer, color: colors.textMain }}>
-      {/* Dynamic Embedded CSS for Animations & Media Queries */}
-      <style>{`
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
-        html {
-          scroll-behavior: smooth;
-        }
-        button:focus-visible {
-          outline: 2px solid ${colors.vibrantPrimary};
-          outline-offset: 2px;
-        }
-        @media (max-width: 768px) {
-          .grid-2 {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-          .grid-reverse {
-            display: flex !important;
-            flex-direction: column-reverse !important;
-          }
-          .nav-links-desktop {
-            display: none !important;
-          }
-          .nav-toggle-btn {
-            display: block !important;
-          }
-          .hero-title {
-            font-size: 2.1rem !important;
-          }
-        }
-      `}</style>
+  const closeMenu = () => setMenuOpen(false);
 
-      {/* Navigation Bar */}
-      <header style={{ ...styles.navbar, borderBottomColor: colors.border }}>
-        <div style={styles.navContainer}>
-          <a 
-            href="#hero" 
-            style={{ ...styles.logo, color: colors.textMain }} 
-            onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}
-          >
-            Saloni<span style={{ color: colors.vibrantPrimary }}></span>
-          </a>
+  return (
+    <div className="portfolio">
+      {/* Navigation */}
+      <header className="navbar">
+        <a href="#home" className="logo" onClick={closeMenu}>
+          SALONI<span>.</span>
+        </a>
 
-          {/* Desktop Navigation */}
-          <nav className="nav-links-desktop" style={styles.desktopNav}>
-            <button style={{ ...styles.navLink, color: colors.textMuted }} onClick={() => scrollToSection('about')}>Who I Am</button>
-            <button style={{ ...styles.navLink, color: colors.textMuted }} onClick={() => scrollToSection('skills')}>My Skills</button>
-            <button style={{ ...styles.navLink, color: colors.textMuted }} onClick={() => scrollToSection('goal')}>My Future Goal</button>
-          </nav>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
 
-          {/* Mobile Menu Toggle Button */}
-          <button 
-            className="nav-toggle-btn"
-            style={{ ...styles.mobileNavToggle, color: colors.textMain }} 
-            onClick={() => setMobileNavOpen(!mobileNavOpen)}
-            aria-label="Toggle navigation"
-          >
-            ☰
-          </button>
-        </div>
+        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <a href="#home" onClick={closeMenu}>Home</a>
+          <a href="#about" onClick={closeMenu}>About</a>
+          <a href="#skills" onClick={closeMenu}>Skills</a>
+          <a href="#goal" onClick={closeMenu}>Goal</a>
+        </nav>
 
-        {/* Mobile Dropdown Menu */}
-        {mobileNavOpen && (
-          <div style={{ ...styles.mobileNavDropdown, borderBottomColor: colors.border }}>
-            <button style={{ ...styles.mobileNavLink, color: colors.textMain }} onClick={() => scrollToSection('about')}>Who I Am</button>
-            <button style={{ ...styles.mobileNavLink, color: colors.textMain }} onClick={() => scrollToSection('skills')}>My Skills</button>
-            <button style={{ ...styles.mobileNavLink, color: colors.textMain }} onClick={() => scrollToSection('goal')}>My Future Goal</button>
-          </div>
-        )}
-      </header>
+        <a
+          href="mailto:your-email@example.com"
+          className="nav-contact"
+        >
+          Let's Connect <span>↗</span>
+        </a>
+      </header>
 
-      {/* Hero Header */}
-      <section id="hero" style={styles.heroSection}>
-        <div style={{ ...styles.heroBadge, backgroundColor: colors.bgAmberLight, color: colors.vibrantAccent, borderColor: colors.vibrantSecondary }}>
-          2nd Year CSE Student
-        </div>
-        <h1 className="hero-title" style={styles.heroTitle}>
-          Hi, I'm <span style={{ color: colors.vibrantPrimary }}>Saloni</span>
-        </h1>
-        <p style={{ ...styles.heroSubtitle, color: colors.textMuted }}>
-          A curious, hardworking, and consistent student developer learning web technologies and building modern applications through hands-on practice.
-        </p>
-        <div style={styles.heroBtnGroup}>
-          <button style={{ ...styles.primaryBtn, backgroundColor: colors.vibrantPrimary }} onClick={() => scrollToSection('about')}>
-            Learn About Me
-          </button>
-          <button style={{ ...styles.secondaryBtn, borderColor: colors.vibrantPrimary, color: colors.vibrantPrimary }} onClick={() => scrollToSection('skills')}>
-            View My Skills
-          </button>
-        </div>
-      </section>
+      <main>
+        {/* Hero section */}
+        <section className="hero" id="home">
+          <div className="hero-content">
+            <p className="eyebrow">HELLO, WORLD! I'M</p>
 
-      {/* Section 1: Who I Am */}
-      <section id="about" style={{ ...styles.section, backgroundColor: colors.bgWarmLight }}>
-        <div className="grid-2" style={styles.grid2}>
-          <div style={styles.imageContainer}>
-          <img 
-              src={image1} 
-              alt="Saloni - Who I Am" 
-              style={{ ...styles.sectionImage, borderColor: colors.border }} 
-            />
-          </div>
-          <div style={styles.textContent}>
-            <h2 style={{ ...styles.sectionHeading, color: colors.textMain }}>01. Who I Am</h2>
-            <p style={{ ...styles.leadParagraph, color: colors.textMain }}>
-              I am a second-year BTech student pursuing <strong>Computer Science and Engineering</strong> at <strong>IET Agra</strong>.
-            </p>
-            <p style={{ ...styles.bodyParagraph, color: colors.textMuted }}>
-              I believe in learning by doing. Rather than focusing solely on theoretical concepts, I thrive on building practical web projects, solving coding problems, and gaining real hands-on experience. I am creative, disciplined, and willing to learn from my mistakes to continuously grow as a developer.
-            </p>
-            <div style={styles.tagContainer}>
-              <span style={{ ...styles.tag, backgroundColor: '#fff', borderColor: colors.border, color: colors.vibrantAccent }}>Curious Learner</span>
-              <span style={{ ...styles.tag, backgroundColor: '#fff', borderColor: colors.border, color: colors.vibrantAccent }}>Hardworking</span>
-              <span style={{ ...styles.tag, backgroundColor: '#fff', borderColor: colors.border, color: colors.vibrantAccent }}>Consistent</span>
-              <span style={{ ...styles.tag, backgroundColor: '#fff', borderColor: colors.border, color: colors.vibrantAccent }}>Practical Mindset</span>
-            </div>
-          </div>
-        </div>
-      </section>
+            <h1 className="saloni">Saloni<span>.</span></h1>
 
-      {/* Section 2: My Skills */}
-      <section id="skills" style={{ ...styles.section, backgroundColor: colors.bgAmberLight }}>
-        <div className="grid-2 grid-reverse" style={styles.grid2}>
-          <div style={styles.textContent}>
-            <h2 style={{ ...styles.sectionHeading, color: colors.textMain }}>02. My Skills</h2>
-            <p style={{ ...styles.leadParagraph, color: colors.textMain }}>
-              I am actively building a solid foundation in core web development technologies.
-            </p>
+            <p className="hero-tagline">
+              A CURIOUS LEARNER &amp;
+              <br />
+              FUTURE FULL-STACK DEVELOPER
+            </p>
 
-            <div style={styles.skillsList}>
-               <div style={{ ...styles.skillCard, ...styles.learningSkillCard, borderColor: colors.vibrantPrimary, backgroundColor: '#fff' }}>
-                <div style={styles.skillCardHeader}>
-                  <span style={{ ...styles.skillTitle, color: colors.textMain }}>HTML5</span>
-                  <span style={styles.coreBadge}>Core</span>
-                </div>
-                <p style={{ ...styles.skillDesc, color: colors.textMuted }}>Structuring clear, accessible, and semantic web content.</p>
-              </div>
+            <p className="hero-description">
+              I'm a second-year BTech Computer Science student at
+              IET Agra, passionate about web development, building
+              projects, and learning new technologies.
+            </p>
 
-               <div style={{ ...styles.skillCard, ...styles.learningSkillCard, borderColor: colors.vibrantPrimary, backgroundColor: '#fff' }}>
-                <div style={styles.skillCardHeader}>
-                  <span style={{ ...styles.skillTitle, color: colors.textMain }}>CSS3</span>
-                  <span style={styles.coreBadge}>Core</span>
-                </div>
-                <p style={{ ...styles.skillDesc, color: colors.textMuted }}>Designing responsive layouts using modern styling, Flexbox, and CSS Grid.</p>
-              </div>
+            <a href="#about" className="primary-button">
+              Discover My Story <span>↓</span>
+            </a>
 
-               <div style={{ ...styles.skillCard, ...styles.learningSkillCard, borderColor: colors.vibrantPrimary, backgroundColor: '#fff' }}>
-                <div style={styles.skillCardHeader}>
-                  <span style={{ ...styles.skillTitle, color: colors.textMain }}>JavaScript</span>
-                  <span style={styles.coreBadge}>Core</span>
-                </div>
-                <p style={{ ...styles.skillDesc, color: colors.textMuted }}>Adding dynamic interactivity, user logic, and functionality to web pages.</p>
-              </div>
+            <div className="hero-note">
+              <span className="note-line"></span>
+              Learning by doing, growing every day.
+            </div>
+          </div>
 
-              <div style={{ ...styles.skillCard, ...styles.learningSkillCard, borderColor: colors.vibrantPrimary, backgroundColor: '#fff' }}>
-                <div style={styles.skillCardHeader}>
-                  <span style={{ ...styles.skillTitle, color: colors.textMain }}>React.js</span>
-                  <span style={styles.coreBadge}>Core</span>
-                </div>
-                <p style={{ ...styles.skillDesc, color: colors.textMuted }}>Building interactive, component-based user interfaces and single-page apps.</p>
-              </div>
-            </div>
-          </div>
+          {/* Personal photo */}
+          <div className="hero-visual">
+            <div className="photo-backdrop"></div>
 
-          <div style={styles.imageContainer}>
-            <img 
-              src={image2} 
-              alt="Saloni - My Skills Progress" 
-              style={{ ...styles.sectionImage, borderColor: colors.vibrantPrimary }} 
-            />
-          </div>
-        </div>
-      </section>
+            <div className="photo-frame">
+             <img
+               src="saloni.png"
+               alt="Saloni"
+               loading="eager"
+               decoding="async"
+               onError={(event) => {
+               event.currentTarget.style.display = "none";
+               event.currentTarget.nextElementSibling.style.display = "grid";
+               }}
+             />
 
-      {/* Section 3: My Future Goal */}
-       <section id="goal" style={{ ...styles.section, background: '#F5F0FF' }}>
-        <div className="grid-2" style={styles.grid2}>
-          <div style={styles.imageContainer}>
-           <img src={image3}
-            alt="Saloni - My Future Goal" 
-            style={{ ...styles.sectionImage, borderColor: colors.border }} 
-           />
-          </div>
-          <div style={styles.textContent}>
-            <h2 style={{ ...styles.sectionHeading, color: colors.primary }}>03. My Future Goal</h2>
-            <p style={{ ...styles.leadParagraph, color: colors.textDark }}>
-              My long-term aspiration is to become a skilled <strong>Full-Stack Developer</strong>.
-            </p>
-            <p style={{ ...styles.bodyParagraph, color: colors.textMuted }}>
-              As I progress through my Computer Science degree, my goal is to systematically expand my skill set from dynamic frontend design to back-end technologies, databases, and server logic. I want to spend my college years building useful, modern, and user-friendly web applications that solve real-world problems.
-            </p>
+              <div className="photo-placeholder">
+                <span className="photo-placeholder-icon">✳</span>
+                <h3>Your photo goes here</h3>
+                <p>Add your picture to public/saloni.jpg</p>
+              </div>
+            </div>
 
-            <div style={styles.roadmapBox}>
-              <div style={{ ...styles.roadmapItem, backgroundColor: '#fff', borderColor: colors.border }}>
-                <span style={{ ...styles.stepNum, backgroundColor: colors.vibrantPrimary }}>1</span>
-                <div style={{ color: colors.textMuted }}>
-                  <strong style={{ color: colors.vibrantAccent }}>Frontend Mastery:</strong> Deepen React.js expertise and component architecture.
-                </div>
-              </div>
-              <div style={{ ...styles.roadmapItem, backgroundColor: '#fff', borderColor: colors.border }}>
-                <span style={{ ...styles.stepNum, backgroundColor: colors.vibrantPrimary }}>2</span>
-                <div style={{ color: colors.textMuted }}>
-                  <strong style={{ color: colors.vibrantAccent }}>Backend Fundamentals:</strong> Learn server-side logic, API design, and databases.
-                </div>
-              </div>
-              <div style={{ ...styles.roadmapItem, backgroundColor: '#fff', borderColor: colors.border }}>
-                <span style={{ ...styles.stepNum, backgroundColor: colors.vibrantPrimary }}>3</span>
-                <div style={{ color: colors.textMuted }}>
-                  <strong style={{ color: colors.vibrantAccent }}>Full-Stack Applications:</strong> Build and deploy complete web applications.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            <div className="photo-caption">
+              <span className="caption-dot"></span>
+              LEARNING · BUILDING · GROWING
+            </div>
 
-      {/* Footer */}
-      <footer style={{ ...styles.footer, borderTopColor: colors.border }}>
-        <div style={styles.footerContent}>
-          <p style={{ ...styles.footerText, color: colors.textMuted }}>&copy; 2026 Saloni. Second-Year CSE Student at IET Agra.</p>
-        </div>
-      </footer>
-    </div>
-  );
+            <div className="floating-note">
+              Build.
+              <br />
+              Learn.
+              <br />
+              Grow. ♡
+            </div>
+          </div>
+        </section>
+
+        {/* 01 — Who I Am */}
+        <section className="section about-section" id="about">
+          <div className="section-heading">
+            <span className="section-number">01</span>
+
+            <div>
+              <p className="section-kicker">A LITTLE ABOUT ME</p>
+              <h2>Who I Am</h2>
+              <span className="heading-underline"></span>
+            </div>
+          </div>
+
+          <div className="about-grid">
+            <div className="about-copy">
+              <p>
+                Hey, I'm Saloni! I'm a second-year BTech student
+                in Computer Science and Engineering at IET Agra.
+                I'm curious about how technology works and love
+                turning ideas into something real.
+              </p>
+
+              <p>
+                Web development is where I'm exploring my
+                creativity and technical skills. I enjoy learning
+                by building projects, solving coding problems,
+                and experimenting with new ideas.
+              </p>
+
+              <p>
+                I'm still learning, and that's the part I enjoy.
+                Every challenge teaches me something new, and
+                every mistake gives me another chance to improve.
+              </p>
+            </div>
+
+            <div className="qualities-card">
+              <div className="qualities-top">
+                <span>WHAT MAKES ME, ME</span>
+                <span className="qualities-star">✳</span>
+              </div>
+
+              {qualities.map((quality, index) => (
+                <div className="quality-item" key={quality}>
+                  <span className="quality-number">
+                    0{index + 1}
+                  </span>
+
+                  <span>{quality}</span>
+
+                  <span className="quality-arrow">↗</span>
+                </div>
+              ))}
+
+              <p className="qualities-footer">
+                Small steps. Real progress.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 02 — My Skills */}
+        <section className="section skills-section" id="skills">
+          <div className="section-heading">
+            <span className="section-number">02</span>
+
+            <div>
+              <p className="section-kicker">MY CURRENT TOOLKIT</p>
+              <h2>My Skills</h2>
+              <span className="heading-underline"></span>
+            </div>
+          </div>
+
+          <div className="skills-intro">
+            <p>
+              I'm currently focusing on frontend development
+              and strengthening my foundations through projects.
+              These are the technologies I'm learning and working with.
+            </p>
+
+            <span className="learning-status">
+              <span className="status-dot"></span>
+              ALWAYS LEARNING
+            </span>
+          </div>
+
+          <div className="skills-grid">
+            {skills.map((skill, index) => (
+              <article className="skill-card" key={skill.name}>
+                <div className={`skill-icon ${skill.className}`}>
+                  {skill.symbol}
+                </div>
+
+                <span className="skill-index">
+                  TECHNOLOGY 0{index + 1}
+                </span>
+
+                <h3>{skill.name}</h3>
+                <p>{skill.description}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="skills-bottom">
+            <span>HTML</span>
+            <span className="bottom-dot">✳</span>
+            <span>CSS</span>
+            <span className="bottom-dot">✳</span>
+            <span>JAVASCRIPT</span>
+            <span className="bottom-dot">✳</span>
+            <span>REACT</span>
+          </div>
+        </section>
+
+        {/* 03 — My Future Goal */}
+        <section className="section goal-section" id="goal">
+          <div className="goal-content">
+            <div className="section-heading">
+              <span className="section-number">03</span>
+
+              <div>
+                <p className="section-kicker">WHERE I'M HEADED</p>
+                <h2>My Future Goal</h2>
+                <span className="heading-underline"></span>
+              </div>
+            </div>
+
+            <div className="goal-copy">
+              <p>
+                My long-term goal is to become a skilled full-stack
+                developer. I want to understand both frontend and
+                backend development so I can turn ideas into complete,
+                useful web applications.
+              </p>
+
+              <p>
+                For now, I'm concentrating on improving my frontend
+                skills, building practical projects, and developing
+                a stronger programming foundation. Step by step,
+                I want to explore backend technologies and databases too.
+              </p>
+
+              <p>
+                I don't expect to know everything overnight. I want
+                to keep learning, stay consistent, and create digital
+                experiences that are modern, accessible, and genuinely
+                helpful to people.
+              </p>
+            </div>
+
+            <div className="goal-signature">
+              <span className="signature-line"></span>
+              <span>My journey, my pace, my progress.</span>
+              <span className="signature-heart">♡</span>
+            </div>
+          </div>
+
+          <div className="goal-visual">
+            <div className="goal-circle circle-one"></div>
+            <div className="goal-circle circle-two"></div>
+
+            <div className="goal-quote">
+              <span className="quote-mark">“</span>
+
+              <p>
+                The goal isn't to be perfect.
+                <br />
+                It's to be better than yesterday.
+              </p>
+
+              <span className="quote-star">✳</span>
+            </div>
+
+            <span className="goal-side-label">
+              DREAM · LEARN · CREATE
+            </span>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="footer">
+        <a href="#home" className="logo footer-logo">
+          SALONI<span>.</span>
+        </a>
+
+        <p>Made with curiosity, creativity &amp; a little bit of code.</p>
+
+        <a href="#home" className="back-to-top">
+          BACK TO TOP ↑
+        </a>
+      </footer>
+    </div>
+  );
 }
 
-// Inline Styles Object
-const styles = {
-  appContainer: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
-    lineHeight: 1.6,
-  },
-  navbar: {
-    position: 'sticky',
-    top: 0,
-    backgroundColor: '#ffb300',
-    backdropFilter: 'blur(8px)',
-    borderBottom: '1px solid',
-    zIndex: 1000,
-    padding: '1rem 0',
-  },
-  navContainer: {
-    maxWidth: '1120px',
-    margin: '0 auto',
-    padding: '0 1.5rem',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  logo: {
-    fontSize: '1.25rem',
-    fontWeight: '700',
-    textDecoration: 'none',
-  },
-  desktopNav: {
-    display: 'flex',
-    gap: '2rem',
-  },
-  navLink: {
-    background: 'none',
-    border: 'none',
-    fontSize: '0.95rem',
-    fontWeight: '500',
-    cursor: 'pointer',
-    transition: 'color 0.2s',
-  },
-  mobileNavToggle: {
-    display: 'none',
-    background: 'none',
-    border: 'none',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-  },
-  mobileNavDropdown: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-    padding: '1rem 1.5rem',
-    backgroundColor: '#9B8AFB',
-    borderBottom: '1px solid',
-  },
-  mobileNavLink: {
-    background: 'none',
-    border: 'none',
-    textAlign: 'left',
-    fontSize: '1rem',
-    fontWeight: '500',
-    cursor: 'pointer',
-  },
-  heroSection: {
-    padding: '5rem 1.5rem 4rem 1.5rem',
-    textAlign: 'center',
-    maxWidth: '800px',
-    margin: '0 auto',
-  },
-  heroBadge: {
-    display: 'inline-block',
-    fontSize: '0.85rem',
-    fontWeight: '600',
-    padding: '0.35rem 1rem',
-    borderRadius: '50px',
-    marginBottom: '1.25rem',
-    border: '1px solid',
-  },
-  heroTitle: {
-    fontSize: '2.75rem',
-    fontWeight: '800',
-    lineHeight: 1.2,
-    marginBottom: '1rem',
-    letterSpacing: '-0.02em',
-  },
-  heroSubtitle: {
-    fontSize: '1.125rem',
-    marginBottom: '2rem',
-  },
-  heroBtnGroup: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '1rem',
-    flexWrap: 'wrap',
-  },
-  primaryBtn: {
-    color: '#9B8AFB',
-    border: 'none',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '8px',
-    fontSize: '0.95rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-  },
-  secondaryBtn: {
-    backgroundColor: 'transparent',
-    border: '2px solid',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '8px',
-    fontSize: '0.95rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-  },
-  section: {
-    padding: '4.5rem 0',
-  },
-  grid2: {
-    maxWidth: '1120px',
-    margin: '0 auto',
-    padding: '0 1.5rem',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '3rem',
-    alignItems: 'center',
-  },
-  textContent: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  sectionHeading: {
-    fontSize: '1.75rem',
-    fontWeight: '700',
-    marginBottom: '1rem',
-  },
-  leadParagraph: {
-    fontSize: '1.1rem',
-    fontWeight: '500',
-    marginBottom: '0.75rem',
-  },
-  bodyParagraph: {
-    marginBottom: '1.25rem',
-  },
-  imageContainer: {
-    width: '100%',
-  },
-  sectionImage: {
-    width: '100%',
-    height: 'auto',
-    borderRadius: '12px',
-    border: '1px solid',
-    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.05)',
-  },
-  tagContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '0.5rem',
-    marginTop: '0.5rem',
-  },
-  tag: {
-    border: '1px solid',
-    fontSize: '0.85rem',
-    fontWeight: '500',
-    padding: '0.35rem 0.75rem',
-    borderRadius: '6px',
-  },
-  skillsList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.85rem',
-    marginTop: '1rem',
-  },
-  skillCard: {
-    border: '1px solid',
-    padding: '1rem 1.25rem',
-    borderRadius: '10px',
-    backgroundColor: '#ffffff',
-  },
-  learningSkillCard: {
-    borderWidth: '2px',
-  },
-  skillCardHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '0.25rem',
-  },
-  skillTitle: {
-    fontWeight: '600',
-    fontSize: '1rem',
-  },
-  skillDesc: {
-    fontSize: '0.875rem',
-  },
-  coreBadge: {
-    fontSize: '0.75rem',
-    fontWeight: '600',
-    backgroundColor: '#ffb300',
-    color: '#475569',
-    padding: '0.2rem 0.5rem',
-    borderRadius: '4px',
-  },
-  learningBadge: {
-    fontSize: '0.75rem',
-    fontWeight: '600',
-    padding: '0.2rem 0.5rem',
-    borderRadius: '4px',
-  },
-  roadmapBox: {
-    marginTop: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.75rem',
-  },
-  roadmapItem: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.85rem',
-    border: '1px solid',
-    padding: '0.85rem 1rem',
-    borderRadius: '8px',
-    fontSize: '0.9rem',
-  },
-  stepNum: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '28px',
-    height: '28px',
-    color: '#ffffff',
-    borderRadius: '50%',
-    fontWeight: '700',
-    fontSize: '0.85rem',
-    flexShrink: 0,
-  },
-  footer: {
-    borderTop: '1px solid',
-    backgroundColor: '#ffb300',
-    padding: '2.5rem 1.5rem',
-    textAlign: 'center',
-  },
-  footerContent: {
-    maxWidth: '1120px',
-    margin: '0 auto',
-  },
-  footerText: {
-    fontSize: '0.9rem',
-  },
-  footerSubText: {
-    fontSize: '0.75rem',
-    marginTop: '0.25rem',
-  },
-
-};            
+export default App;
