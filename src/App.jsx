@@ -110,7 +110,7 @@ function App() {
 
             <div className="photo-frame">
              <img
-               src={saloni.png}
+               src={saloni}
                alt="Saloni"
                loading="eager"
                decoding="async"
