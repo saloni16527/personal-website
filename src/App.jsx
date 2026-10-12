@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import saloni from './assets/saloni.png';
 
 const skills = [
   {
@@ -109,7 +110,7 @@ function App() {
 
             <div className="photo-frame">
              <img
-               src="saloni.png"
+               src={saloni.png}
                alt="Saloni"
                loading="eager"
                decoding="async"
