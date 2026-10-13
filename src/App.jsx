@@ -123,7 +123,7 @@ function App() {
               <div className="photo-placeholder">
                 <span className="photo-placeholder-icon">✳</span>
                 <h3>Your photo goes here</h3>
-                <p>Add your picture to public/saloni.jpg</p>
+                {/* <p>Add your picture to public/saloni.jpg</p> */}
               </div>
             </div>
 
